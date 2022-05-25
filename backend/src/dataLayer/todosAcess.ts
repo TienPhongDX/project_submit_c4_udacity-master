@@ -1,15 +1,7 @@
 import * as AWS from 'aws-sdk'
-// import * as AWSXRay from 'aws-xray-sdk'
-// import { DocumentClient } from 'aws-sdk/clients/dynamodb'
-// import { createLogger } from '../utils/logger'
 import { TodoItem } from '../models/TodoItem'
 import { TodoUpdate } from '../models/TodoUpdate';
 
-// const XAWS = AWSXRay.captureAWS(AWS)
-
-// const logger = createLogger('TodosAccess')
-
-// TODO: Implement the dataLayer logic
 
 export class TodosAccess {
 
@@ -62,26 +54,6 @@ export class TodosAccess {
       return { Updated: updtedTodo };
     }
 
-    // async deleteToDo(todoId: string, userId: string): Promise<string> {
-    //     console.log("Deleting todo");
-    //     // const params = {
-    //     //     TableName: this.todosTable,
-    //     //     Key: {
-    //     //         "userId": userId,
-    //     //         "todoId": todoId
-    //     //     },
-    //     // };
-    //     const result = await this.dynamoDBClient.delete({ //const result = await this.docClient.delete(params).promise();
-    //         TableName: this.todosTable,
-    //         Key: {
-    //             "userId": userId,
-    //             "todoId": todoId
-    //         }
-    //     }).promise();
-    //     console.log(result);
-    //     return "" as string;
-    // }
-
     async getTodoFromDB(todoId: string, userId: string) {
         const result = await this.dynamoDBClient.get({
             TableName: this.todosTable,
@@ -104,16 +76,3 @@ export class TodosAccess {
         }).promise();
     }
 }
-
-// function createDynamoDBClient() {
-//     if (process.env.IS_OFFLINE) {
-//         console.log('Creating a local DynamoDB instance')
-//         return new XAWS.DynamoDB.DocumentClient({
-//             region: 'localhost',
-//             endpoint: 'http://localhost:8000'
-//         })
-//     }
-
-//     return new XAWS.DynamoDB.DocumentClient()
-// }
-

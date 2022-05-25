@@ -4,7 +4,6 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 
-// import { getUserId } from '../utils'
 import { generateUploadUrl } from '../../businessLogic/todos';
 
 export const handler = middy(
