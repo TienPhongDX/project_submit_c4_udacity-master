@@ -43,7 +43,7 @@ export default class App extends Component<AppProps, AppState> {
   render() {
     return (
       <div>
-        <SegmentGroup horizontal>
+        <SegmentGroup horizontal height="100vh">
           <Segment style={{ padding: '2em 0em' }} >
             <Grid container stackable verticalAlign="middle">
               <Grid.Row>
@@ -57,7 +57,7 @@ export default class App extends Component<AppProps, AppState> {
               </Grid.Row>
             </Grid>
           </Segment>
-          <Segment>
+          <Segment >
             <Image src="https://source.unsplash.com/random/" wrapped />
           </Segment>
         </SegmentGroup>
