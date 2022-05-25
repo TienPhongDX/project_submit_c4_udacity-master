@@ -64,21 +64,11 @@ export default class App extends Component<AppProps, AppState> {
         <Menu.Item name="home">
           <Link to="/">Home</Link>
         </Menu.Item>
-        <Menu.Menu position="right">{this.getInforUser()}</Menu.Menu>
         <Menu.Menu position="right">{this.logInLogOutButton()}</Menu.Menu>
       </Menu>
     )
   }
 
-  getInforUser() {
-    if (this.props.auth.isAuthenticated()) {
-      return (
-        <Menu.Item name="logout">
-          Hi {this.props.auth.getUsername()}
-        </Menu.Item>
-      )
-    }
-  }
 
   logInLogOutButton() {
     if (this.props.auth.isAuthenticated()) {
