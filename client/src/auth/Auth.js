@@ -51,7 +51,7 @@ export default class Auth {
 
   getUsername() {
     const decodedJwt = decode(this.idToken)
-    return decodedJwt.family_name
+    return decodedJwt.name
   }
 
   getIdToken() {

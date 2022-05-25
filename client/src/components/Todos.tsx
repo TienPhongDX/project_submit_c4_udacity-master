@@ -109,7 +109,10 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
   render() {
     return (
       <div>
-        <Header as="h1">TODOs</Header>
+        <Header as='h2' icon textAlign='center' style={{ padding: '1em 0em' }}>
+          <Icon name='clipboard check'/>
+          <Header.Content>My todo list</Header.Content>
+        </Header>
 
         {this.renderCreateTodoInput()}
 

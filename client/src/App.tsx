@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Route, Router, Switch } from 'react-router-dom'
-import { Grid, Menu, Segment, ItemMeta, Item } from 'semantic-ui-react'
+import { Grid, Menu, Segment, SegmentGroup, Image } from 'semantic-ui-react'
 
 import Auth from './auth/Auth'
 import { EditTodo } from './components/EditTodo'
@@ -8,14 +8,16 @@ import { LogIn } from './components/LogIn'
 import { NotFound } from './components/NotFound'
 import { Todos } from './components/Todos'
 
-export interface AppProps {}
+export interface AppProps { }
 
 export interface AppProps {
   auth: Auth
   history: any
 }
 
-export interface AppState {}
+export interface AppState { }
+
+let userName;
 
 export default class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
@@ -41,19 +43,25 @@ export default class App extends Component<AppProps, AppState> {
   render() {
     return (
       <div>
-        <Segment style={{ padding: '8em 0em' }} vertical>
-          <Grid container stackable verticalAlign="middle">
-            <Grid.Row>
-              <Grid.Column width={16}>
-                <Router history={this.props.history}>
-                  {this.generateMenu()}
+        <SegmentGroup horizontal height="100vh">
+          <Segment style={{ padding: '2em 0em' }} >
+            <Grid container stackable verticalAlign="middle">
+              <Grid.Row>
+                <Grid.Column width={16}>
+                  <Router history={this.props.history}>
+                    {this.generateMenu()}
 
-                  {this.generateCurrentPage()}
-                </Router>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
+                    {this.generateCurrentPage()}
+                  </Router>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          <Segment >
+            <Image src="https://source.unsplash.com/random/" wrapped />
+          </Segment>
+        </SegmentGroup>
+
       </div>
     )
   }
@@ -62,9 +70,14 @@ export default class App extends Component<AppProps, AppState> {
     return (
       <Menu>
         <Menu.Item name="home">
-          <Link to="/">Home</Link>
+          <Link to="/"><img src="https://img.icons8.com/fluency/48/000000/todo-list.png" /> </Link>
         </Menu.Item>
-        <Menu.Menu position="right">{this.logInLogOutButton()}</Menu.Menu>
+        <Menu.Menu position="right">
+          <Menu.Item >
+            {userName}
+          </Menu.Item>
+          {this.logInLogOutButton()}
+        </Menu.Menu>
       </Menu>
     )
   }
@@ -72,8 +85,9 @@ export default class App extends Component<AppProps, AppState> {
 
   logInLogOutButton() {
     if (this.props.auth.isAuthenticated()) {
+      userName = this.props.auth.getUsername();
       return (
-        
+
         <Menu.Item name="logout" onClick={this.handleLogout}>
           Log Out
         </Menu.Item>
