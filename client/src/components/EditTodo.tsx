@@ -88,6 +88,7 @@ export class EditTodo extends React.PureComponent<
               placeholder="Image to upload"
               onChange={this.handleFileChange}
             />
+            <img alt="" />
           </Form.Field>
 
           {this.renderButton()}
@@ -102,6 +103,7 @@ export class EditTodo extends React.PureComponent<
       <div>
         {this.state.uploadState === UploadState.FetchingPresignedUrl && <p>Uploading image metadata</p>}
         {this.state.uploadState === UploadState.UploadingFile && <p>Uploading file</p>}
+        
         <Button
           loading={this.state.uploadState !== UploadState.NoUpload}
           type="submit"
